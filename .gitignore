@@ -83,8 +83,8 @@ rhombus_data_infer/*.pyc
 rhombus_data_infer/__pycache__/
 rhombus_data_infer/local_settings.py
 
-rhombus_data_infer/.env
-.env
+rhombus_data_infer/.venv
+.venv
 rhombus_data_infer/db.sqlite3
 
 .DS_STORE
