@@ -1,0 +1,28 @@
+# Use the official Python base image
+FROM python:3.9
+
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# Set work directory
+WORKDIR /app
+
+# Install dependencies
+COPY rhombus_data_infer/requirements.txt /app/
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy project
+COPY rhombus_data_infer /app/
+
+# Copy entrypoint script into the container
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+
+# Grant execute permissions to the entrypoint script
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+#RUN chmod +x /app/docker-entrypoint.sh
+
+# Run migrations
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+
+#CMD ["./docker-entrypoint.sh"]
